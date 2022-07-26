@@ -15,8 +15,6 @@ function PrivateRoute({ children, permissions = [] }) {
   const merchantPermissions = useMerchantPermissions();
   let location = useLocation();
 
-  console.log("isAuthenticated", isAuthenticated);
-
   if (!isAuthenticated) {
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }

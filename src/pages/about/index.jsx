@@ -1,5 +1,7 @@
+import LifeCircleHook from "components/LifeCircleHook";
+
 function About() {
-  return `About`;
+  return <LifeCircleHook />;
 }
 
 export default About;
