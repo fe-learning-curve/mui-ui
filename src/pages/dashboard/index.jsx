@@ -11,6 +11,7 @@ import Table from "./Table";
 import Counter from "./Counter";
 import Something from "./Something";
 import ArrayLearning from "./ArrayLearning";
+import MaterialCards from "./MaterialCards";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,7 +47,7 @@ function a11yProps(index) {
 }
 
 function Dashboard() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(5);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -65,6 +66,7 @@ function Dashboard() {
           <Tab label="Cards" {...a11yProps(2)} />
           <Tab label="Charts" {...a11yProps(3)} />
           <Tab label="Table" {...a11yProps(4)} />
+          <Tab label="Material cards" {...a11yProps(5)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -95,6 +97,9 @@ function Dashboard() {
       </TabPanel>
       <TabPanel value={value} index={4}>
         <Table />
+      </TabPanel>
+      <TabPanel value={value} index={5}>
+        <MaterialCards />
       </TabPanel>
     </Box>
   );
