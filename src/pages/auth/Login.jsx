@@ -4,15 +4,33 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
+import useAuthStore from "./store";
+import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 function Login() {
+  const onLogin = useAuthStore((state) => state?.onLogin);
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log("data", data);
+    onLogin({
+      ...data,
+      success: () => {
+        navigate("/");
+      },
+      error: (message) => {
+        enqueueSnackbar(message);
+      },
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -32,7 +50,7 @@ function Login() {
             <TextField
               label={"Password"}
               fullWidth
-              {...register("lastName", { required: true })}
+              {...register("password", { required: true })}
             />
           </Grid>
         </Grid>

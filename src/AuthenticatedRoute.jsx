@@ -1,12 +1,12 @@
 import React from "react";
-import { useIsAuthenticated } from "hooks/auth";
 import { Navigate, useLocation } from "react-router-dom";
+import useAuthStore from "pages/auth/store";
 
 function AuthenticatedRoute({ children }) {
-  let isAuthenticated = useIsAuthenticated();
+  let authenticated = useAuthStore((state) => state?.authenticated);
   let location = useLocation();
 
-  if (isAuthenticated) {
+  if (authenticated) {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 

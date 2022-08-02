@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import CssBaseline from "@mui/material/CssBaseline";
+import { SnackbarProvider } from "notistack";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.Fragment>
-    <CssBaseline />
-    <App />
+    <SnackbarProvider maxSnack={1}>
+      <CssBaseline />
+      <App />
+    </SnackbarProvider>
   </React.Fragment>
 );
 

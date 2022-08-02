@@ -10,6 +10,7 @@ import Charts from "./Charts";
 import Table from "./Table";
 import Counter from "./Counter";
 import Something from "./Something";
+import ArrayLearning from "./ArrayLearning";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -59,17 +60,21 @@ function Dashboard() {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Counter" {...a11yProps(0)} />
-          <Tab label="Cards" {...a11yProps(0)} />
-          <Tab label="Charts" {...a11yProps(1)} />
-          <Tab label="Table" {...a11yProps(2)} />
+          <Tab label="Array" {...a11yProps(0)} />
+          <Tab label="Counter" {...a11yProps(1)} />
+          <Tab label="Cards" {...a11yProps(2)} />
+          <Tab label="Charts" {...a11yProps(3)} />
+          <Tab label="Table" {...a11yProps(4)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
+        <ArrayLearning />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
         <Counter />
         <Something />
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={2}>
         <Grid container direction="row" spacing={2}>
           {[1, 2, 3]?.map((index) => {
             return (
@@ -85,10 +90,10 @@ function Dashboard() {
           })}
         </Grid>
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={3}>
         <Charts value={value} />
       </TabPanel>
-      <TabPanel value={value} index={3}>
+      <TabPanel value={value} index={4}>
         <Table />
       </TabPanel>
     </Box>

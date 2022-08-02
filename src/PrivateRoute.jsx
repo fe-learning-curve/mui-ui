@@ -1,6 +1,6 @@
+import useAuthStore from "pages/auth/store";
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useIsAuthenticated } from "hooks/auth";
 
 function isPassPermission() {
   return true;
@@ -11,11 +11,11 @@ function useMerchantPermissions() {
 }
 
 function PrivateRoute({ children, permissions = [] }) {
-  let isAuthenticated = useIsAuthenticated();
+  let authenticated = useAuthStore((state) => state?.authenticated);
   const merchantPermissions = useMerchantPermissions();
   let location = useLocation();
 
-  if (!isAuthenticated) {
+  if (!authenticated) {
     return <Navigate to="/auth/login" state={{ from: location }} replace />;
   }
 
